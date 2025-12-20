@@ -1,0 +1,10 @@
+-I/Users/bytedance/.config/cp
+-std=c++17
+-O2
+-Wall
+-Wextra
+-Wshadow
+-Wconversion
+-Wno-sign-conversion
+-isysroot
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
