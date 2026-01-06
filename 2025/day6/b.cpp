@@ -51,7 +51,7 @@ void solve() {
 
     string operation_str = lines.back();
     int counter = 0;
-    for (int i = 0; i < operation_str.size(); i++) {
+    for (size_t i = 0; i < operation_str.size(); i++) {
         if (operation_str[i] != ' ') {
             operations.push_back(operation_str[i]);
             if (counter > 0) {
@@ -67,9 +67,51 @@ void solve() {
         widths.push_back(counter + 1);
     }
 
-    for (size_t i = 0; i < processed)
+    for (int i = 0; i < widths.size(); i++) {
+        vector<string> values;
+        for (int j = 0; j < widths[i]; j++) {
+            string value;
+            for (int k = 0; k < lines.size() - 1; k++) {
+                dbg_out(j);
+                dbg_out(k);
+                dbg_out(lines[k][j]);
+                if (lines[k][j] != ' ') {
+                    value += lines[k][j];
+                }
+            }
+            values.push_back(value);
+        }
 
-        cout << ans << endl;
+        for (int j = 0; j < lines.size() - 1; j++) {
+            dbg_out(lines[j]);
+            if (widths[i] + 1 >= lines[j].size()) {
+                lines[j] = "";
+            } else {
+                lines[j] = lines[j].substr(widths[i] + 1);
+            }
+            dbg_out(lines[j]);
+        }
+
+        ll calc;
+
+        if (operations[i] == '*') {
+            calc = 1;
+        } else {
+            calc = 0;
+        }
+        for (int j = 0; j < values.size(); j++) {
+            dbg_out(values[j]);
+            if (operations[i] == '*') {
+                calc *= stoll(values[j]);
+            } else {
+                calc += stoll(values[j]);
+            }
+        }
+
+        ans += calc;
+    }
+
+    cout << ans << endl;
 }
 
 int main(int argc, char** argv) {
